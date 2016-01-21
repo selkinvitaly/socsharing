@@ -23,7 +23,7 @@ Add the script in your page and initialize the class `Socsharing`. For example:
     ...
   </head>
   <body>
-    <div data-socsharing-list="vk,tw,fb,ok,mail,gplus,link" class="default"></div>
+    <div class="default" data-socsharing-list="vk,tw,fb,ok,mail,gplus,link" data-socsharing-popup></div>
     ...
     <script src="../socsharing.min.js" defer></script>
     <script src="../my-script.js" defer></script>
