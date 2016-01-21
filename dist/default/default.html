@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:title" content="Open Graph Title">
+    <meta property="og:description" content="Open Graph Message">
+    <meta property="og:image" content="http://ogp.me/logo.png">
+    <meta property="og:url" content="http://ogp.me/">
+    <title>Demo</title>
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+  </head>
+  <body>
+    <h1>Demonstration of the script with default style</h1>
+    <div data-socsharing-list="vk,tw,fb,ok,mail,gplus,link" data-socsharing-popup class="default"></div>
+    <script src="../socsharing.js"></script>
+    <script>
+      var elem = document.querySelector(".default");
+      
+      new Socsharing(elem);
+    </script>
+  </body>
+</html>
