@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px"
+	 viewBox="7.221 8.438 30 30" enable-background="new 7.221 8.438 30 30" xml:space="preserve">
+<rect x="7.221" y="8.438" fill="#DC4E41" width="30" height="30"/>
+<g>
+	<path fill="#FFFFFF" d="M18.425,19.244c1.29,0,2.153,0.55,2.646,1.025l1.803-1.736c-1.157-1.083-2.657-1.737-4.45-1.737
+		c-3.673,0-6.642,2.97-6.642,6.642c0,3.672,2.969,6.643,6.642,6.643c3.833,0,6.376-2.695,6.376-6.491
+		c0-0.437-0.047-0.769-0.104-1.101h-6.271v2.277h3.767c-0.152,0.977-1.139,2.865-3.767,2.865c-2.269,0-4.118-1.879-4.118-4.193
+		S16.157,19.244,18.425,19.244z"/>
+	<polygon fill="#FFFFFF" points="30.76,20.591 28.863,20.591 28.863,22.489 26.965,22.489 26.965,24.386 28.863,24.386 
+		28.863,26.283 30.76,26.283 30.76,24.386 32.658,24.386 32.658,22.489 30.76,22.489 	"/>
+</g>
+</svg>
