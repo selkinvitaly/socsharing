@@ -154,9 +154,7 @@ var Socsharing =
 	        resizable: 1,
 	        menubar: 0,
 	        toolbar: 0,
-	        status: 0,
-	        width: 600,
-	        height: 500
+	        status: 0
 	      };
 
 	      cfg.height = height;
