@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:title" content="Open Graph Title">
+    <meta property="og:description" content="Open Graph Message">
+    <meta property="og:image" content="http://ogp.me/logo.png">
+    <meta property="og:url" content="http://ogp.me/">
+    <title>Demo</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/default/css/default.css">
+    <link rel="stylesheet" href="mocha/2.3.4/mocha.css">
+    <script src="mocha/2.3.4/mocha.js"></script>
+    <script src="chai/3.4.1/chai.js"></script>
+    <!-- init testing libs -->
+    <script>
+      mocha.setup("bdd");
+
+      var expect = chai.expect;
+    </script>
+  </head>
+  <body>
+
+    <!-- output for results -->
+    <div id="mocha"></div>
+
+    <!-- socsharing container-->
+    <div data-socsharing-list="vk,tw,fb,ok,mail,gplus,link" data-socsharing-popup class="default"></div>
+
+    <!-- socsharing class -->
+    <script src="http://localhost:3000/socsharing.js"></script>
+
+    <!-- init socsharing and specs -->
+    <script src="specs/tests.js"></script>
+
+    <!-- run testing -->
+    <script>
+      mocha.run();
+    </script>
+
+  </body>
+</html>
