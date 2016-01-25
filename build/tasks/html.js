@@ -6,6 +6,7 @@ const plumber = require("gulp-plumber");
 const jade    = require("gulp-jade");
 const jadeInh = require("gulp-jade-inheritance");
 const gulpIf  = require("gulp-if");
+const changed = require("gulp-changed");
 
 module.exports = function(options) {
   let src     = options && options.src;
@@ -22,6 +23,7 @@ module.exports = function(options) {
   return function(cb) {
     return gulp.src(src)
       .pipe(plumber())
+      .pipe(gulpIf(watched, changed(dest)))
       .pipe(jadeInh(plugins.jadeInheritance))
       .pipe(gulpIf(dev, jade(plugins.jadeDev), jade(plugins.jadeProd)))
       .pipe(plumber.stop())
