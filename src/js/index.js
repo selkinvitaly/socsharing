@@ -58,8 +58,6 @@ class Socsharing {
       menubar: 0,
       toolbar: 0,
       status: 0,
-      left: (window.screen.availWidth - 600) / 2,
-      top: (window.screen.availHeight - 500) / 2,
       width: 600,
       height: 500
     };
