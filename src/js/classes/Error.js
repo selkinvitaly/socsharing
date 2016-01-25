@@ -6,7 +6,7 @@ import errors from "../lib/errors";
 function SocsharingError(code) {
   this.name    = "SocsharingError";
   this.code    = code;
-  this.message = errors.get(code);
+  this.message = errors[code];
 
   if (Error.captureStackTrace) {
     Error.captureStackTrace(this, SocsharingError);

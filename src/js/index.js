@@ -165,7 +165,7 @@ class Socsharing {
 
     // filters supported services
     let parsedServices = passedServices.filter((service) => {
-      return social.has(service);
+      return !!social[service];
     });
 
     if (!parsedServices.length) {
@@ -208,7 +208,7 @@ class Socsharing {
     listElem.className = Socsharing.CLASS_UL;
 
     parsedServices.forEach((service) => {
-      let serviceMap = social.get(service);
+      let serviceMap = social[service];
       let address    = serviceMap.getURL();
       let classLi    = serviceMap.getClass();
       let altText    = serviceMap.getAltText();
