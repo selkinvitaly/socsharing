@@ -5,26 +5,18 @@ let lib = {};
 export default {
 
   /**
-   * Returns uniq array
+   * Removes duplicates from an array
    * @param  {array} arr The original array
    * @return {array}     The unique array
    */
   unique(arr) {
-    let temp = {};
-
-    arr.forEach((item) => {
-      temp[item] = true;
-    });
-
-    return Object.keys(temp);
-  },
-
-  isString(str) {
-    return typeof str === "string";
+    return arr.filter(function(item) {
+			return !this[item] ? this[item] = true : false;
+		}, {});
   },
 
   hasClass(elem, className) {
-    return elem.classList ? elem.classList.contains(className) : ~elem.className.indexOf(className);
+    return elem.classList ? elem.classList.contains(className) : new RegExp("\\b" + className + "\\b").test(elem.className);
   },
 
   /**
@@ -44,8 +36,27 @@ export default {
     } while (elem = elem.parentNode && deep-- !== 0);
   },
 
-  preventDefault(event) {
-    event.preventDefault ? event.preventDefault() : event.returnValue = 0;
+  /**
+   * Returns value of "data-" attributes
+   * @param {[type]} elem [description]
+   * @param {[type]} attr [description]
+   */
+  dataset(elem, attr) {
+    if (elem.dataset) {
+      return elem.dataset[this.toCamelCase(attr)];
+    }
+
+    for (let i = 0, len = elem.attributes.length; i < len; i++) {
+      let current = elem.attributes[i];
+
+      if (current.nodeName.indexOf("data-") === -1 || current.nodeName !== attr) {
+        continue;
+      }
+
+      return current.nodeValue;
+    }
+
+    return null;
   },
 
   /**

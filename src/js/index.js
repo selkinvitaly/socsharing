@@ -1,6 +1,5 @@
 "use strict";
 
-import dataset  from "./lib/dataset";
 import _        from "./lib/helpers";
 import Err      from "./classes/Error";
 import social   from "./lib/services";
@@ -105,7 +104,7 @@ class Socsharing {
       let popup = window.open(href, winName, options.join(","));
 
       popup.focus();
-      _.preventDefault(event);
+      event.preventDefault();
     }
   }
 
@@ -118,7 +117,7 @@ class Socsharing {
 
     return (meta && meta.getAttribute("content"))
             ? meta.getAttribute("content")
-            : dataset(elem, Socsharing.ATTR_TITLE) || document.title;
+            : _.dataset(elem, Socsharing.ATTR_TITLE) || document.title;
   }
 
   _parseURL(elem) {
@@ -126,7 +125,7 @@ class Socsharing {
 
     return (meta && meta.getAttribute("content"))
             ? meta.getAttribute("content")
-            : dataset(elem, Socsharing.ATTR_URL) || window.location.href;
+            : _.dataset(elem, Socsharing.ATTR_URL) || window.location.href;
   }
 
   _parseMessage(elem) {
@@ -134,7 +133,7 @@ class Socsharing {
 
     return (meta && meta.getAttribute("content"))
             ? meta.getAttribute("content")
-            : dataset(elem, Socsharing.ATTR_MSG) || "";
+            : _.dataset(elem, Socsharing.ATTR_MSG) || "";
   }
 
   _parseImage(elem) {
@@ -142,17 +141,17 @@ class Socsharing {
 
     return (meta && meta.getAttribute("content"))
             ? meta.getAttribute("content")
-            : dataset(elem, Socsharing.ATTR_IMG) || "";
+            : _.dataset(elem, Socsharing.ATTR_IMG) || "";
   }
 
   /**
    * Gets an array of service names
-   * Removed dublicated and unsupported names
+   * Removes dublicated and unsupported names
    * @param  {elem} elem Element-container
    * @return {arr}       Array of service names
    */
   _parseServices(elem) {
-    let passedServices = dataset(elem, Socsharing.ATTR_SERVICES);
+    let passedServices = _.dataset(elem, Socsharing.ATTR_SERVICES);
 
     if (!passedServices) {
       throw new Err(0);

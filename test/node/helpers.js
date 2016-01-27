@@ -7,22 +7,6 @@ const expect = chai.expect;
 
 describe("helpers", () => {
 
-  describe("isString()", () => {
-
-    it("should return bool type", () => {
-      expect(_.isString(null)).to.be.a("boolean");
-    });
-
-    it("should return true, because It's string", () => {
-      expect(_.isString("")).to.be.true;
-    });
-
-    it("should return false, because It isn't string", () => {
-      expect(_.isString()).to.be.false;
-    });
-
-  });
-
   describe("unique()", () => {
 
     it("should return array type", () => {
