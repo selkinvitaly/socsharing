@@ -17,6 +17,7 @@
     "build:pub": "gulp clean && gulp build && NODE_ENV=production gulp js",
     "watch": "gulp clean && LIVE_RELOAD=true gulp build && gulp watch"
   },
+  "main": "src/js/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/selkinvitaly/socsharing.git"
