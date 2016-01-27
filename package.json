@@ -1,6 +1,6 @@
 {
   "name": "socsharing",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The simple social sharing",
   "scripts": {
     "test": "mocha test/index.js --compilers js:babel-core/register",
