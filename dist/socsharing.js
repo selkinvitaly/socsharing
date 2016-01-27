@@ -72,19 +72,15 @@ var Socsharing =
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
 
-	var _dataset = __webpack_require__(/*! ./lib/dataset */ 19);
-
-	var _dataset2 = _interopRequireDefault(_dataset);
-
-	var _helpers = __webpack_require__(/*! ./lib/helpers */ 26);
+	var _helpers = __webpack_require__(/*! ./lib/helpers */ 19);
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
-	var _Error = __webpack_require__(/*! ./classes/Error */ 27);
+	var _Error = __webpack_require__(/*! ./classes/Error */ 20);
 
 	var _Error2 = _interopRequireDefault(_Error);
 
-	var _services = __webpack_require__(/*! ./lib/services */ 31);
+	var _services = __webpack_require__(/*! ./lib/services */ 24);
 
 	var _services2 = _interopRequireDefault(_services);
 
@@ -208,7 +204,7 @@ var Socsharing =
 	      var popup = window.open(href, winName, options.join(","));
 
 	      popup.focus();
-	      _helpers2.default.preventDefault(event);
+	      event.preventDefault();
 	    }
 	  }
 
@@ -222,33 +218,33 @@ var Socsharing =
 	    value: function _parseTitle(elem) {
 	      var meta = document.querySelector("meta[property=\"og:title\"]");
 
-	      return meta && meta.getAttribute("content") ? meta.getAttribute("content") : (0, _dataset2.default)(elem, Socsharing.ATTR_TITLE) || document.title;
+	      return meta && meta.getAttribute("content") ? meta.getAttribute("content") : _helpers2.default.dataset(elem, Socsharing.ATTR_TITLE) || document.title;
 	    }
 	  }, {
 	    key: "_parseURL",
 	    value: function _parseURL(elem) {
 	      var meta = document.querySelector("meta[property=\"og:url\"]");
 
-	      return meta && meta.getAttribute("content") ? meta.getAttribute("content") : (0, _dataset2.default)(elem, Socsharing.ATTR_URL) || window.location.href;
+	      return meta && meta.getAttribute("content") ? meta.getAttribute("content") : _helpers2.default.dataset(elem, Socsharing.ATTR_URL) || window.location.href;
 	    }
 	  }, {
 	    key: "_parseMessage",
 	    value: function _parseMessage(elem) {
 	      var meta = document.querySelector("meta[property=\"og:description\"]");
 
-	      return meta && meta.getAttribute("content") ? meta.getAttribute("content") : (0, _dataset2.default)(elem, Socsharing.ATTR_MSG) || "";
+	      return meta && meta.getAttribute("content") ? meta.getAttribute("content") : _helpers2.default.dataset(elem, Socsharing.ATTR_MSG) || "";
 	    }
 	  }, {
 	    key: "_parseImage",
 	    value: function _parseImage(elem) {
 	      var meta = document.querySelector("meta[property=\"og:image\"]");
 
-	      return meta && meta.getAttribute("content") ? meta.getAttribute("content") : (0, _dataset2.default)(elem, Socsharing.ATTR_IMG) || "";
+	      return meta && meta.getAttribute("content") ? meta.getAttribute("content") : _helpers2.default.dataset(elem, Socsharing.ATTR_IMG) || "";
 	    }
 
 	    /**
 	     * Gets an array of service names
-	     * Removed dublicated and unsupported names
+	     * Removes dublicated and unsupported names
 	     * @param  {elem} elem Element-container
 	     * @return {arr}       Array of service names
 	     */
@@ -256,7 +252,7 @@ var Socsharing =
 	  }, {
 	    key: "_parseServices",
 	    value: function _parseServices(elem) {
-	      var passedServices = (0, _dataset2.default)(elem, Socsharing.ATTR_SERVICES);
+	      var passedServices = _helpers2.default.dataset(elem, Socsharing.ATTR_SERVICES);
 
 	      if (!passedServices) {
 	        throw new _Error2.default(0);
@@ -654,182 +650,32 @@ var Socsharing =
 /***/ },
 /* 19 */
 /*!*******************************!*\
-  !*** ./src/js/lib/dataset.js ***!
-  \*******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _getOwnPropertyDescriptor = __webpack_require__(/*! babel-runtime/core-js/object/get-own-property-descriptor */ 20);
-
-	var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _helpers = __webpack_require__(/*! ./helpers */ 26);
-
-	var _helpers2 = _interopRequireDefault(_helpers);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/**
-	 * If dataset is supported than this returns true, else false
-	 * @return {bool} Supported or not
-	 */
-	function checkSupport() {
-	  var supported = document.documentElement.dataset || (0, _getOwnPropertyDescriptor2.default)(Element.prototype, "dataset") && (0, _getOwnPropertyDescriptor2.default)(Element.prototype, "dataset").get;
-
-	  return !!supported;
-	}
-
-	/**
-	 * Returns value of "data-" attributes
-	 * @param {[type]} elem [description]
-	 * @param {[type]} attr [description]
-	 */
-	function dataset(elem, attr) {
-	  if (checkSupport()) {
-	    return elem.dataset[_helpers2.default.toCamelCase(attr)];
-	  }
-
-	  for (var i = 0, len = elem.attributes.length; i < len; i++) {
-	    var current = elem.attributes[i];
-
-	    if (current.nodeName.indexOf("data-") === -1 || current.nodeName !== attr) {
-	      continue;
-	    }
-
-	    return current.nodeValue;
-	  }
-
-	  return null;
-	}
-
-	exports.default = dataset;
-
-/***/ },
-/* 20 */
-/*!***********************************************************************!*\
-  !*** ./~/babel-runtime/core-js/object/get-own-property-descriptor.js ***!
-  \***********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptor */ 21), __esModule: true };
-
-/***/ },
-/* 21 */
-/*!********************************************************************!*\
-  !*** ./~/core-js/library/fn/object/get-own-property-descriptor.js ***!
-  \********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var $ = __webpack_require__(/*! ../../modules/$ */ 18);
-	__webpack_require__(/*! ../../modules/es6.object.get-own-property-descriptor */ 22);
-	module.exports = function getOwnPropertyDescriptor(it, key){
-	  return $.getDesc(it, key);
-	};
-
-/***/ },
-/* 22 */
-/*!*****************************************************************************!*\
-  !*** ./~/core-js/library/modules/es6.object.get-own-property-descriptor.js ***!
-  \*****************************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-	var toIObject = __webpack_require__(/*! ./$.to-iobject */ 23);
-
-	__webpack_require__(/*! ./$.object-sap */ 7)('getOwnPropertyDescriptor', function($getOwnPropertyDescriptor){
-	  return function getOwnPropertyDescriptor(it, key){
-	    return $getOwnPropertyDescriptor(toIObject(it), key);
-	  };
-	});
-
-/***/ },
-/* 23 */
-/*!***************************************************!*\
-  !*** ./~/core-js/library/modules/$.to-iobject.js ***!
-  \***************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(/*! ./$.iobject */ 24)
-	  , defined = __webpack_require__(/*! ./$.defined */ 6);
-	module.exports = function(it){
-	  return IObject(defined(it));
-	};
-
-/***/ },
-/* 24 */
-/*!************************************************!*\
-  !*** ./~/core-js/library/modules/$.iobject.js ***!
-  \************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// fallback for non-array-like ES3 and non-enumerable old V8 strings
-	var cof = __webpack_require__(/*! ./$.cof */ 25);
-	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
-	  return cof(it) == 'String' ? it.split('') : Object(it);
-	};
-
-/***/ },
-/* 25 */
-/*!********************************************!*\
-  !*** ./~/core-js/library/modules/$.cof.js ***!
-  \********************************************/
-/***/ function(module, exports) {
-
-	var toString = {}.toString;
-
-	module.exports = function(it){
-	  return toString.call(it).slice(8, -1);
-	};
-
-/***/ },
-/* 26 */
-/*!*******************************!*\
   !*** ./src/js/lib/helpers.js ***!
   \*******************************/
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	"use strict";
-
-	var _keys = __webpack_require__(/*! babel-runtime/core-js/object/keys */ 2);
-
-	var _keys2 = _interopRequireDefault(_keys);
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	var lib = {};
 
 	exports.default = {
 
 	  /**
-	   * Returns uniq array
+	   * Removes duplicates from an array
 	   * @param  {array} arr The original array
 	   * @return {array}     The unique array
 	   */
 
 	  unique: function unique(arr) {
-	    var temp = {};
-
-	    arr.forEach(function (item) {
-	      temp[item] = true;
-	    });
-
-	    return (0, _keys2.default)(temp);
-	  },
-	  isString: function isString(str) {
-	    return typeof str === "string";
+	    return arr.filter(function (item) {
+	      return !this[item] ? this[item] = true : false;
+	    }, {});
 	  },
 	  hasClass: function hasClass(elem, className) {
-	    return elem.classList ? elem.classList.contains(className) : ~elem.className.indexOf(className);
+	    return elem.classList ? elem.classList.contains(className) : new RegExp("\\b" + className + "\\b").test(elem.className);
 	  },
 
 	  /**
@@ -849,8 +695,28 @@ var Socsharing =
 	      }
 	    } while (elem = elem.parentNode && deep-- !== 0);
 	  },
-	  preventDefault: function preventDefault(event) {
-	    event.preventDefault ? event.preventDefault() : event.returnValue = 0;
+
+	  /**
+	   * Returns value of "data-" attributes
+	   * @param {[type]} elem [description]
+	   * @param {[type]} attr [description]
+	   */
+	  dataset: function dataset(elem, attr) {
+	    if (elem.dataset) {
+	      return elem.dataset[this.toCamelCase(attr)];
+	    }
+
+	    for (var i = 0, len = elem.attributes.length; i < len; i++) {
+	      var current = elem.attributes[i];
+
+	      if (current.nodeName.indexOf("data-") === -1 || current.nodeName !== attr) {
+	        continue;
+	      }
+
+	      return current.nodeValue;
+	    }
+
+	    return null;
 	  },
 
 	  /**
@@ -867,7 +733,7 @@ var Socsharing =
 	};
 
 /***/ },
-/* 27 */
+/* 20 */
 /*!*********************************!*\
   !*** ./src/js/classes/Error.js ***!
   \*********************************/
@@ -875,7 +741,7 @@ var Socsharing =
 
 	"use strict";
 
-	var _create = __webpack_require__(/*! babel-runtime/core-js/object/create */ 28);
+	var _create = __webpack_require__(/*! babel-runtime/core-js/object/create */ 21);
 
 	var _create2 = _interopRequireDefault(_create);
 
@@ -883,7 +749,7 @@ var Socsharing =
 	  value: true
 	});
 
-	var _errors = __webpack_require__(/*! ../lib/errors */ 30);
+	var _errors = __webpack_require__(/*! ../lib/errors */ 23);
 
 	var _errors2 = _interopRequireDefault(_errors);
 
@@ -907,16 +773,16 @@ var Socsharing =
 	exports.default = SocsharingError;
 
 /***/ },
-/* 28 */
+/* 21 */
 /*!**************************************************!*\
   !*** ./~/babel-runtime/core-js/object/create.js ***!
   \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/create */ 29), __esModule: true };
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/create */ 22), __esModule: true };
 
 /***/ },
-/* 29 */
+/* 22 */
 /*!***********************************************!*\
   !*** ./~/core-js/library/fn/object/create.js ***!
   \***********************************************/
@@ -928,7 +794,7 @@ var Socsharing =
 	};
 
 /***/ },
-/* 30 */
+/* 23 */
 /*!******************************!*\
   !*** ./src/js/lib/errors.js ***!
   \******************************/
@@ -947,7 +813,7 @@ var Socsharing =
 	};
 
 /***/ },
-/* 31 */
+/* 24 */
 /*!********************************!*\
   !*** ./src/js/lib/services.js ***!
   \********************************/
@@ -959,7 +825,7 @@ var Socsharing =
 	    value: true
 	});
 
-	var _Service = __webpack_require__(/*! ../classes/Service */ 32);
+	var _Service = __webpack_require__(/*! ../classes/Service */ 25);
 
 	var _Service2 = _interopRequireDefault(_Service);
 
@@ -977,7 +843,7 @@ var Socsharing =
 	};
 
 /***/ },
-/* 32 */
+/* 25 */
 /*!***********************************!*\
   !*** ./src/js/classes/Service.js ***!
   \***********************************/
